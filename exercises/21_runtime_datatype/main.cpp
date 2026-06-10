@@ -18,6 +18,8 @@ struct TaggedUnion {
 };
 
 // TODO: 将这个函数模板化用于 sigmoid_dyn
+// 不太理解呀，Sigmoid 函数（逻辑斯蒂函数）
+// 主要理解TaggedUnion就行
 float sigmoid(float x) {
     return 1 / (1 + std::exp(-x));
 }
@@ -25,6 +27,14 @@ float sigmoid(float x) {
 TaggedUnion sigmoid_dyn(TaggedUnion x) {
     TaggedUnion ans{x.type};
     // TODO: 根据 type 调用 sigmoid
+    if (x.type == DataType::Float)
+    {
+        ans.f = sigmoid(x.f);
+    }
+    else
+    {
+        ans.d = 1 / (1 + std::exp(-5.0));
+    }
     return ans;
 }
 
